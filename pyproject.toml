@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "fastapi-crud"
+version = "0.1.0"
+description = ""
+authors = ["pea06 <jowangyu75@dgsw.hs.kr>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.108.0"
+sqlalchemy = "^2.0.25"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
