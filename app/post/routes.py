@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from fastapi_crud.database import get_db
+from app.database import get_db
 
 from .models import Post
 from .schemas import CreatePostRequest
