@@ -6,10 +6,13 @@ authors = ["pea06 <jowangyu75@dgsw.hs.kr>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-fastapi = "^0.108.0"
-sqlalchemy = "^2.0.25"
-
+python = "^3.8"
+fastapi = "^0.62.0"
+uvicorn = "^0.13.2"
+SQLAlchemy = "^1.3.22"
+psycopg2-binary = "^2.8.6"
+pydantic = {extras = ["dotenv"], version = "^1.7.3"}
+alembic = "^1.4.3"
 
 [build-system]
 requires = ["poetry-core"]
