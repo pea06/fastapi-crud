@@ -5,14 +5,14 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 
-from .crud import get_post, create_post, get_posts, delete_post
-from .schemas import CreatePostRequest, PostResponse
+from .crud import get_post, create_post, get_posts, delete_post, update_post
+from .schemas import PostRequest, PostResponse
 
 router = APIRouter()
 
 @router.post("/create")
 def create_post_endpoint(
-    request: CreatePostRequest, 
+    request: PostRequest, 
     db: Session = Depends(get_db)
     ):
     create_post(request, db)
@@ -27,6 +27,19 @@ def get_posts_endpoint(
     posts = get_posts(db)
 
     return [PostResponse(post_id=post.post_id, title=post.title, content=post.content) for post in posts]
+
+@router.put("/{post_id}")
+def update_post_endpoint(
+    post_id: int,
+    request: PostRequest,
+    db: Session = Depends(get_db)
+    ):
+
+    update_post(post_id, request, db)
+
+    return {"success" : True}
+
+
 
 @router.get("/{post_id}")
 def get_post_endpoint(
