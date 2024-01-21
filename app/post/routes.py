@@ -19,6 +19,15 @@ def create_post_endpoint(
 
     return { "success": True }
 
+@router.get("/list")
+def get_posts_endpoint(
+    db: Session = Depends(get_db)
+    ) -> List[PostResponse]:
+
+    posts = get_posts(db)
+
+    return [PostResponse(post_id=post.post_id, title=post.title, content=post.content) for post in posts]
+
 @router.get("/{post_id}")
 def get_post_endpoint(
     post_id: int,
@@ -32,14 +41,4 @@ def get_post_endpoint(
         title = post.title,
         content = post.content
     )
-
-@router.get("/list/")
-def get_posts_endpoint(
-    db: Session = Depends(get_db)
-    ) -> List[PostResponse]:
-
-    posts = get_posts(db)
-
-    return [PostResponse(post_id=post.post_id, title=post.title, content=post.content) for post in posts]
-
     
