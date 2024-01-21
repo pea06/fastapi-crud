@@ -19,3 +19,8 @@ def create_post(request: CreatePostRequest, db: Session):
 
     db.add(post)
     db.commit()
+
+def delete_post(post_id: int, db: Session):
+    post = get_post(post_id, db)
+    db.delete(post)
+    db.commit()

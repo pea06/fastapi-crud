@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 
-from .crud import get_post, create_post, get_posts
+from .crud import get_post, create_post, get_posts, delete_post
 from .schemas import CreatePostRequest, PostResponse
 
 router = APIRouter()
@@ -41,4 +41,13 @@ def get_post_endpoint(
         title = post.title,
         content = post.content
     )
-    
+
+@router.delete("/{post_id}")
+def delte_post_endpoint(
+    post_id: int,
+    db: Session = Depends(get_db)
+    ):
+
+    delete_post(post_id, db)
+
+    return { "success": True }
